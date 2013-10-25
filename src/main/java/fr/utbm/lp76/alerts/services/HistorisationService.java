@@ -1,5 +1,7 @@
 package fr.utbm.lp76.alerts.services;
 
-public interface HistorisationService {
+import fr.utbm.lp76.alerts.model.AlertHis;
 
+public interface HistorisationService {
+	public void logAlertChange(AlertHis ah);
 }
