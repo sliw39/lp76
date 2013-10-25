@@ -1,4 +1,4 @@
-package model;
+package fr.utbm.lp76.alerts.model;
 
 public class Area {
 	private String label;

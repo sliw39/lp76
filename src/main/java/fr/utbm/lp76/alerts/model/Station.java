@@ -1,4 +1,4 @@
-package model;
+package fr.utbm.lp76.alerts.model;
 
 import java.sql.Date;
 
