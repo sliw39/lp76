@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.springframework.stereotype.Service;
 
@@ -20,9 +21,11 @@ public class AcquisitionServiceImpl implements AcquisitionService {
 		
 		Connection con = null;
 		ArrayList<Alert> map = new ArrayList<Alert>();
+		Properties prop = new Properties();
 		
 		try {
-			con = DriverManager.getConnection("jdbc:mysql:localhost", "admin", "admin");
+			prop.load(getClass().getResourceAsStream("config.ini"));
+			con = DriverManager.getConnection(prop.getProperty("database/server"), prop.getProperty("database/login"), prop.getProperty("database/password"));
 			PreparedStatement st = con.prepareStatement("SELECT alr_code, alr_label, alr_description FROM alert");
 			
 			ResultSet rs = st.executeQuery();
@@ -30,7 +33,7 @@ public class AcquisitionServiceImpl implements AcquisitionService {
 				Alert a = new Alert();
 				a.setCode(rs.getString("alr_code"));
 				a.setLabel(rs.getString("alr_label"));
-				a.setDesciption("alr_description");
+				a.setDesciption(rs.getString("alr_description"));
 				
 				map.add(a);
 			}	
@@ -46,12 +49,39 @@ public class AcquisitionServiceImpl implements AcquisitionService {
 			}
 		}
 		
-		return map;
+		return (List<Alert>) map;
 	}
 
 	public List<Trigger> getAllTriggers() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = null;
+		ArrayList<Trigger> map = new ArrayList<Trigger>();
+		
+		try {
+			con = DriverManager.getConnection("jdbc:mysql:localhost", "admin", "admin");
+			PreparedStatement st = con.prepareStatement("SELECT alr_code, alr_label, alr_description FROM alert");
+			
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				Alert a = new Alert();
+				a.setCode(rs.getString("alr_code"));
+				a.setLabel(rs.getString("alr_label"));
+				a.setDesciption(rs.getString("alr_description"));
+				
+				//map.add(a);
+			}	
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if(con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		
+		return (List<Trigger>) map;
 	}	
 	
 }
