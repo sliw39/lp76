@@ -1,9 +1,16 @@
 package fr.utbm.lp76.alerts.model;
 
+import java.util.ArrayList;
+
 public class Sensor {
 	private int id;
 	private String label;
 	private Station station;
+	private ArrayList<Temperature> temperatures; 
+	
+	public Sensor() {
+		temperatures = new ArrayList<Temperature>();
+	}
 
 	public int getId() {
 		return id;
@@ -28,4 +35,13 @@ public class Sensor {
 	public void setStation(Station station) {
 		this.station = station;
 	}
+	
+	public void addTemperature(Temperature t) {
+		temperatures.add(t);
+	}
+	
+	public ArrayList<Temperature> getTemperatures() {
+		return temperatures;
+	}
+	
 }

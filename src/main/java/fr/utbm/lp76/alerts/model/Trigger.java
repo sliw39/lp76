@@ -7,6 +7,15 @@ public class Trigger {
 	private boolean edge;
 	private Alert alert;
 	private Sensor sensor;
+	private AlertHis lastAlertHis;
+
+	public AlertHis getLastAlertHis() {
+		return lastAlertHis;
+	}
+
+	public void setLastAlertHis(AlertHis lastAlertHis) {
+		this.lastAlertHis = lastAlertHis;
+	}
 
 	public int getId() {
 		return id;
