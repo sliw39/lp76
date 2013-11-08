@@ -24,7 +24,7 @@ public class ArchivingServiceImpl implements ArchivingService
 			PreparedStatement st = con.prepareStatement("INSERT INTO AlertHis (Alh_Date, Alh_State, Trg_Id) VALUES (?,?,?)");
 			
 			st.setDate(1, ah.getDate());
-			st.setBoolean(2, ah.isState());
+			st.setBoolean(2, ah.getState());
 			st.setInt(3, ah.getTrigger().getId());
 		} catch (Exception ex) {
 			ex.printStackTrace();

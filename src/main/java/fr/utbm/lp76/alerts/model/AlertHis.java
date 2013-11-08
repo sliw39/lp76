@@ -24,7 +24,7 @@ public class AlertHis {
 		this.date = date;
 	}
 
-	public boolean isState() {
+	public boolean getState() {
 		return state;
 	}
 
