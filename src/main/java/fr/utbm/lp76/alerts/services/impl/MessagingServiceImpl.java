@@ -7,7 +7,13 @@ import fr.utbm.lp76.alerts.services.MessagingService;
 
 @Service("MessagingService")
 public class MessagingServiceImpl implements MessagingService {
-
+	
+	
+	
+	public MessagingServiceImpl() {
+		
+	}
+	
 	public void sendAlert(AlertHis ah) {
 		
 	}
