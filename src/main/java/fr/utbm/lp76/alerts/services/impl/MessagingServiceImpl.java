@@ -24,11 +24,11 @@ public class MessagingServiceImpl implements MessagingService {
 		Destination destination = null;
 		Session session = null;
 		MessageProducer sender = null;
-
+		
 		try {
 			context = new InitialContext();
 			factory = (ConnectionFactory) context.lookup("ConnectionFactory");
-			destination = (Destination) context.lookup("alert.Queue");
+			destination = (Destination) context.lookup("AlertQueue");
 			connection = factory.createConnection();
 			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			sender = session.createProducer(destination);
@@ -38,7 +38,8 @@ public class MessagingServiceImpl implements MessagingService {
 			final MapMessage message = session.createMapMessage();
 
 			// Filling header
-
+			
+			
 			// Filling the message
 			message.setString("ALR_CODE", ah.getTrigger().getAlert().getCode());
 			message.setString("ALR_LABEL", ah.getTrigger().getAlert()
@@ -51,9 +52,8 @@ public class MessagingServiceImpl implements MessagingService {
 					.getLabel());
 
 			sender.send(message);
-			session.commit();
-
-			sender.send(message);
+			//session.commit();
+			
 			System.out.println("Message envoyé");
 		} catch (Exception e) {
 			e.printStackTrace();

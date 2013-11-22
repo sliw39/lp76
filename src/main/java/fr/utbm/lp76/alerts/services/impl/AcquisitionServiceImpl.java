@@ -71,8 +71,12 @@ public class AcquisitionServiceImpl implements AcquisitionService {
 		Properties prop = new Properties();
 		
 		try {
-			prop.load(getClass().getResourceAsStream("config.ini"));
-			con = DriverManager.getConnection(prop.getProperty("database/server"), prop.getProperty("database/login"), prop.getProperty("database/password"));
+			//prop.load(getClass().getResourceAsStream("config.ini"));
+			//con = DriverManager.getConnection(prop.getProperty("database/server"), prop.getProperty("database/login"), prop.getProperty("database/password"));
+			
+			Context namingContext = new InitialContext();
+			DataSource datasource = (DataSource)namingContext.lookup("java:comp/env/jdbc/LP76DS");
+			con = datasource.getConnection();
 			
 			HashMap<Integer, Sensor> sensors = new HashMap<Integer, Sensor>();
 			Statement query = con.createStatement();
