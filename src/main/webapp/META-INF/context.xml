@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Context>
+	<!-- DB connexion -->
+	<Resource name="jdbc/LP76DS"
+		auth="Container"
+		type="javax.sql.DataSource"
+		username="lp76"
+		password="lp76"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/lp76"
+		maxActive="20"
+		maxIdle="20">
+	</Resource>
+</Context>
