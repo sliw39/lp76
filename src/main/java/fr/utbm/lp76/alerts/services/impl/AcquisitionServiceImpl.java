@@ -10,6 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import org.springframework.stereotype.Service;
 
 import fr.utbm.lp76.alerts.model.Alert;
@@ -29,8 +33,12 @@ public class AcquisitionServiceImpl implements AcquisitionService {
 		Properties prop = new Properties();
 		
 		try {
-			prop.load(getClass().getResourceAsStream("config.ini"));
-			con = DriverManager.getConnection(prop.getProperty("database/server"), prop.getProperty("database/login"), prop.getProperty("database/password"));
+			//prop.load(getClass().getResourceAsStream("config.ini"));
+			//con = DriverManager.getConnection(prop.getProperty("database/server"), prop.getProperty("database/login"), prop.getProperty("database/password"));
+			Context namingContext = new InitialContext();
+			DataSource datasource = (DataSource)namingContext.lookup("java:comp/env/jdbc/LP76DS");
+			con = datasource.getConnection();
+			
 			PreparedStatement st = con.prepareStatement("SELECT alr_code, alr_label, alr_description FROM alert");
 			
 			ResultSet rs = st.executeQuery();
