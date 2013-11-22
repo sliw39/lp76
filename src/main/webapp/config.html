@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Interface</title>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.3.custom.css">
+    <link rel="stylesheet" type="text/css" href="css/ui.jqgrid.css">
+
+	<script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="js/jquery.jqGrid.src.js"></script>
+		
+	<script src="js/config_core.js"></script>
+	<script src="js/config_ajax.js"></script>
+	
+  </head>
+  <body>
+    <!-- Une ou plusieurs balises HTML pour d�finir le contenu du document -->
+	
+	<div>Search By:</div>
+	
+	<div> 
+		Station: <br> 
+		<select name="station">
+		    <option>un</option>
+		    <option>deux</option>
+		    <option>trois</option>
+		</select>
+	</div>
+	
+	<div> 
+		Zone: <br> 
+		<select name="zone">
+		    <option>un</option>
+		    <option>deux</option>
+		    <option>trois</option>
+		</select>		
+	</div>
+	
+	<div> 
+		Name<br> 
+		<input type="text" id="item" onkeydown="doSearch(arguments[0]||event)" /> 
+		<button onclick="gridReload()" id="submitButton" style="margin-left:30px;">Search</button> 
+	</div> 	
+
+	<br /> 
+
+	<table id="list10"></table> 
+	<div id="pager10"></div> 
+	<br /> 
+
+	<table id="list10_d"></table> 
+	<div id="pager10_d"></div> 
+	<input type="BUTTON" id="add" value="Add" /> 
+	<input type="BUTTON" id="del" value="Delete" /> 	
+
+  </body>
+</html>
