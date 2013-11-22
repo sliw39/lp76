@@ -34,12 +34,13 @@ public class AlertManagerServiceImpl implements AlertManagerService
 		
 	}
 	
-	public void stopAlert(Alert al)
+	public void stopAlert(Alert al, Trigger tg)
 	{
 		java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
 		AlertHis ah = new AlertHis();
 		ah.setDate(date);
 		ah.setState(false);
+		ah.setTrigger(tg);
 		
 		ms.sendAlert(ah);
 		as.logAlertChange(ah);

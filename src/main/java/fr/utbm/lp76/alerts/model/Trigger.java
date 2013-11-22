@@ -41,7 +41,7 @@ public class Trigger {
 		this.low = low;
 	}
 
-	public boolean isEdge() {
+	public boolean isUpriseEdge() {
 		return edge;
 	}
 
