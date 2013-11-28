@@ -1,3 +1,12 @@
+TRIGGER.prototype = {
+	id : null,			//ID du trigger (peut être null)
+	alert : "", 		//ID de l'alerte
+	sensor : "",		//ID du capteur
+	highlevel : 0,		//valeur basse
+	lowlevel : 0,		//valeur haute
+	edge : "Uprise"		//sens du seuil
+}
+
 var HANDLER = {
 	processListAreas : function(datas) {
 		var options = "";
@@ -50,5 +59,37 @@ var REQUESTER = {
 		$.post( "requestStations.do", { "area" : zone, "station":station, "filter":filter },function( data ) {
 			HANDLER.processListSensors(data);
 		});
+	},
+	
+	/**
+	 * Ajoute un nouveau trigger
+	 * @param trigger : le nouveau trigger
+	 */
+	addTrigger : function(trigger) {
+		if(trigger instanceof TRIGGER) {
+			$.post( "manageTrigger.do", { "type" : "insert", "trigger" : JSON.stringify(trigger) } );
+		}
+	},
+	
+	/**
+	 * Supprime un trigger
+	 * @param trigger : le trigger à supprimer
+	 */
+	removeTrigger : function(trigger) {
+		if(trigger instanceof TRIGGER) {
+			$.post( "manageTrigger.do", { "type" : "delete", "trigger" : JSON.stringify(trigger) } );
+		}
+	},
+	
+	/**
+	 * Modifie un trigger
+	 * @param trigger : le trigger à mettre à jour
+	 */
+	updateTrigger : function(trigger) {
+		if(trigger instanceof TRIGGER) {
+			$.post( "manageTrigger.do", { "type" : "update", "trigger" : JSON.stringify(trigger) } );
+		}
 	}
 }
+
+
