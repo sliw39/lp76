@@ -4,14 +4,28 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
   <servlet>
   	<servlet-name>RequestAreas</servlet-name>
   	<display-name>RequestAreas</display-name>
-  	<description></description>
+  	<description>Get all areas</description>
   	<servlet-class>fr.utbm.lp76.alerts.web.RequestAreas</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Runner</servlet-name>
+  	<display-name>Runner</display-name>
+  	<description>Run the application in a single shot</description>
+  	<servlet-class>fr.utbm.lp76.alerts.web.Runner</servlet-class>
+  </servlet>
+  
+  
   <servlet-mapping>
   	<servlet-name>RequestAreas</servlet-name>
   	<url-pattern>/requestAreas.do</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Runner</servlet-name>
+  	<url-pattern>/reload.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

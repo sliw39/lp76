@@ -8,7 +8,8 @@ var TRIGGER = {
 };
 
 var HANDLER = {
-	processListAreas : function(datas) {
+	processListAreas : function(data) {
+		var datas = eval(data);
 		var options = "";
 		for(var i in datas.areas) {
 			option += "<option>"+datas.areas[i]+"</option>";

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop" 
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
@@ -40,7 +41,7 @@
 	<amq:queue id="destination" physicalName="alerts.queue" />
 
 	<!-- JMS ConnectionFactory to use, configuring the embedded broker using XML -->
-	<amq:connectionFactory id="jmsFactory" brokerURL="tcp://localhost:6616" />
+	<amq:connectionFactory id="jmsFactory" brokerURL="tcp://localhost:61616" />
 
 	<!-- JMS Producer Configuration -->
 	<bean id="jmsProducerConnectionFactory" 
@@ -51,4 +52,4 @@
 		p:connectionFactory-ref="jmsProducerConnectionFactory"
 		p:defaultDestination-ref="destination" />
 	
-</beans> 
+</beans>

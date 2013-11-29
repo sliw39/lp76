@@ -40,13 +40,14 @@ public class RequestAreas extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		List<Area> areas = database.getAllAreas();
 		JSONArray array = new JSONArray();
+		//String tmp = "[test]";
 
 		for (Area area : areas) {
 			array.put(area.getLabel());
 		}
 
 		JSONObject object = new JSONObject();
-		object.append("areas", array);
+		object.put("areas", array);
 
 		response.getWriter().write(object.toString());
 	}
