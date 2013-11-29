@@ -12,5 +12,10 @@ public interface AlertManagerService {
 	 */
 	public void createAlert(Alert al, Trigger tg);
 	
+	/**
+	 * stops an active alert
+	 * @param al
+	 * @param tg
+	 */
 	public void stopAlert(Alert al, Trigger tg);
 }
