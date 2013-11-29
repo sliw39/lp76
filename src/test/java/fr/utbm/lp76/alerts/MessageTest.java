@@ -12,8 +12,8 @@ import fr.utbm.lp76.alerts.model.Sensor;
 import fr.utbm.lp76.alerts.model.Trigger;
 import fr.utbm.lp76.alerts.services.MessagingService;
 
-@ContextConfiguration(locations = { "classpath:test-app-context.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:test-app-context.xml" })
 public class MessageTest {
 	
 	@Autowired

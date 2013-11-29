@@ -115,6 +115,12 @@
 			<version>5.2.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.xbean</groupId>
+			<artifactId>xbean-spring</artifactId>
+			<version>3.16</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>alerts</finalName>
