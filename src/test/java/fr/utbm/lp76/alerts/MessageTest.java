@@ -17,7 +17,7 @@ import fr.utbm.lp76.alerts.services.MessagingService;
 public class MessageTest {
 	
 	@Autowired
-	MessagingService service;
+	private MessagingService service;
 	
 	@Test
 	public void sendMessageTest() {
