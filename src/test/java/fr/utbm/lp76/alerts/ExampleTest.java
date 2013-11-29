@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.*;
 
 import fr.utbm.lp76.alerts.services.EdgeManagerService;
 
-@ContextConfiguration(locations = { "classpath:applicationContextTest.xml" })
+@ContextConfiguration(locations = { "classpath:tes-app-context.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ExampleTest  {
 	
