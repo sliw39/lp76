@@ -17,6 +17,7 @@ import fr.utbm.lp76.alerts.services.EdgeManagerService;
  */
 @Component("Runner")
 public class Runner {
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
