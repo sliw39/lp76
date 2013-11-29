@@ -1,4 +1,4 @@
-TRIGGER.prototype = {
+var TRIGGER = {
 	id : null,			//ID du trigger (peut être null)
 	alert : "", 		//ID de l'alerte
 	sensor : "",		//ID du capteur

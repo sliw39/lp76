@@ -27,7 +27,7 @@ public class DatabaseMinerServiceImpl implements DatabaseMinerService {
 			DataSource datasource = (DataSource)namingContext.lookup("java:comp/env/jdbc/LP76DS");
 			con = datasource.getConnection();
 			
-			PreparedStatement st = con.prepareStatement("SELECT alr_code, alr_label, alr_description FROM alert");
+			PreparedStatement st = con.prepareStatement("SELECT are_id, are_label, are_road FROM area");
 			
 			ResultSet rs = st.executeQuery();
 			while(rs.next()) {

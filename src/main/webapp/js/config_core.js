@@ -112,3 +112,10 @@ function gridReload(){
 	var cd_mask = jQuery("#search_cd").val(); 
 	jQuery("#bigset").jqGrid('setGridParam',{url:"bigset.php?nm_mask="+nm_mask+"&cd_mask="+cd_mask,page:1}).trigger("reloadGrid"); 
 } 
+
+$(function() {
+	var spinner1 = $("#spinnerLow").spinner();
+});
+$(function() {
+	var spinner2 = $("#spinnerHigh").spinner();
+});

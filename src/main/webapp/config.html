@@ -3,15 +3,30 @@
   <head>
     <meta charset="UTF-8">
     <title>Interface</title>
-    <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.3.custom.css">
-    <link rel="stylesheet" type="text/css" href="css/ui.jqgrid.css">
-
+    
 	<script src="js/jquery-1.9.1.js"></script>
     <script src="js/jquery-ui-1.10.3.custom.js"></script>
     <script src="js/jquery.jqGrid.src.js"></script>
-		
+
+
+    <link rel="stylesheet" type="text/css" href="./css/ui.jqgrid.css">
+    <link rel="stylesheet" type="text/css" href="./css/jquery-ui-1.10.3.custom.css">
+
 	<script src="js/config_core.js"></script>
 	<script src="js/config_ajax.js"></script>
+	
+	<script>
+	REQUESTER.getAllAreas();
+	REQUESTER.getStationsById("ALL");
+	
+	$("#submitButton").click(function(){
+		var zone = $("#zone").val();
+		var station = $("#station").val();
+		var name = $("#item").val();
+		REQUESTER.getSensors(zone, station, name);
+	});
+	
+	</script>
 	
   </head>
   <body>
@@ -20,29 +35,22 @@
 	<div>Search By:</div>
 	
 	<div> 
-		Station: <br> 
-		<select name="station">
-		    <option>un</option>
-		    <option>deux</option>
-		    <option>trois</option>
+		Station:
+		<select id="station">
+
 		</select>
-	</div>
-	
-	<div> 
-		Zone: <br> 
-		<select name="zone">
-		    <option>un</option>
-		    <option>deux</option>
-		    <option>trois</option>
-		</select>		
-	</div>
-	
-	<div> 
-		Name<br> 
+		
+		Zone: 
+		<select id="zone">
+		   
+		</select>
+		
+		Name :
 		<input type="text" id="item" onkeydown="doSearch(arguments[0]||event)" /> 
 		<button onclick="gridReload()" id="submitButton" style="margin-left:30px;">Search</button> 
-	</div> 	
-
+		
+	</div>
+		
 	<br /> 
 
 	<table id="list10"></table> 
@@ -53,6 +61,19 @@
 	<div id="pager10_d"></div> 
 	<input type="BUTTON" id="add" value="Add" /> 
 	<input type="BUTTON" id="del" value="Delete" /> 	
-
+	
+	<form>
+		Sensor: <input type="text" id="sensor" disabled value="" /><br />
+		Alert: <input type="text" id="alert" disabled value="" /><br />	
+		Edge: 
+		<select id="edge">
+		    <option>un</option>
+		    <option>deux</option>
+		    <option>trois</option>
+		</select><br />
+		Low value: <input id="spinnerLow" name="low" /><br />
+		High value: <input id="spinnerHigh" name="high" /><br />
+		<button onclick="" id="saveButton">Save</button>	
+	</form>
   </body>
 </html>
