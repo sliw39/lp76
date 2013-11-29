@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 
 import org.springframework.stereotype.Service;
 
-import fr.utbm.lp76.alerts.model.Alert;
 import fr.utbm.lp76.alerts.model.Area;
 import fr.utbm.lp76.alerts.services.DatabaseMinerService;
 
@@ -32,12 +31,12 @@ public class DatabaseMinerServiceImpl implements DatabaseMinerService {
 			
 			ResultSet rs = st.executeQuery();
 			while(rs.next()) {
-				Alert a = new Alert();
-				a.setCode(rs.getString("alr_code"));
-				a.setLabel(rs.getString("alr_label"));
-				a.setDesciption(rs.getString("alr_description"));
+				Area a = new Area();
+				a.setId(rs.getInt("are_id"));
+				a.setLabel(rs.getString("are_label"));
+				a.setRoad(rs.getString("are_road"));
 				
-				//map.add(a);
+				map.add(a);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -51,8 +50,7 @@ public class DatabaseMinerServiceImpl implements DatabaseMinerService {
 			}
 		}
 		
-		//return (List<Alert>) map;
-		return null;
+		return (List<Area>) map;
 	}
 
 }

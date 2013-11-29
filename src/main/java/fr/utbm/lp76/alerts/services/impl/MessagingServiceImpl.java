@@ -40,5 +40,6 @@ public class MessagingServiceImpl implements MessagingService {
 				return message;
 			}
 		});
+		System.out.println("Message envoyé");
 	}
 }
