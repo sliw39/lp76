@@ -9,10 +9,10 @@ var TRIGGER = {
 
 var HANDLER = {
 	processListAreas : function(data) {
-		var datas = eval(data);
+		var datas = $.parseJSON(data);
 		var options = "";
 		for(var i in datas.areas) {
-			option += "<option>"+datas.areas[i]+"</option>";
+			options += "<option>"+datas.areas[i]+"</option>";
 		}
 		$("#zone").html(options);
 	},
