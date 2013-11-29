@@ -5,7 +5,7 @@ var TRIGGER = {
 	highlevel : 0,		//valeur basse
 	lowlevel : 0,		//valeur haute
 	edge : "Uprise"		//sens du seuil
-}
+};
 
 var HANDLER = {
 	processListAreas : function(datas) {
@@ -27,7 +27,7 @@ var HANDLER = {
 	processListSensors : function(datas) {
 		//TODO insert in grid !!!
 	}
-}
+};
 
 var REQUESTER = {
 	/**
@@ -90,4 +90,4 @@ var REQUESTER = {
 			$.post( "manageTrigger.do", { "type" : "update", "trigger" : JSON.stringify(trigger) } );
 		}
 	}
-}
+};

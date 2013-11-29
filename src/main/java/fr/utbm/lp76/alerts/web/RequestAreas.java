@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.stereotype.Component;
 
 import fr.utbm.lp76.alerts.model.Area;
 import fr.utbm.lp76.alerts.services.DatabaseMinerService;
@@ -22,11 +19,9 @@ import fr.utbm.lp76.alerts.services.DatabaseMinerService;
 /**
  * Servlet implementation class RequestAreas
  */
-@Component("RequestAreas")
 public class RequestAreas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@Autowired
 	private DatabaseMinerService database;
 
 	/**
