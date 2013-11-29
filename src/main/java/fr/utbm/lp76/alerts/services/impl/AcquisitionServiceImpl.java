@@ -1,15 +1,12 @@
 package fr.utbm.lp76.alerts.services.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -30,11 +27,8 @@ public class AcquisitionServiceImpl implements AcquisitionService {
 		
 		Connection con = null;
 		ArrayList<Alert> map = new ArrayList<Alert>();
-		Properties prop = new Properties();
 		
 		try {
-			//prop.load(getClass().getResourceAsStream("config.ini"));
-			//con = DriverManager.getConnection(prop.getProperty("database/server"), prop.getProperty("database/login"), prop.getProperty("database/password"));
 			Context namingContext = new InitialContext();
 			DataSource datasource = (DataSource)namingContext.lookup("java:comp/env/jdbc/LP76DS");
 			con = datasource.getConnection();
@@ -49,7 +43,7 @@ public class AcquisitionServiceImpl implements AcquisitionService {
 				a.setDesciption(rs.getString("alr_description"));
 				
 				map.add(a);
-			}	
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -68,12 +62,8 @@ public class AcquisitionServiceImpl implements AcquisitionService {
 	public List<Trigger> getAllTriggers() {
 		Connection con = null;
 		ArrayList<Trigger> map = new ArrayList<Trigger>();
-		Properties prop = new Properties();
 		
-		try {
-			//prop.load(getClass().getResourceAsStream("config.ini"));
-			//con = DriverManager.getConnection(prop.getProperty("database/server"), prop.getProperty("database/login"), prop.getProperty("database/password"));
-			
+		try {	
 			Context namingContext = new InitialContext();
 			DataSource datasource = (DataSource)namingContext.lookup("java:comp/env/jdbc/LP76DS");
 			con = datasource.getConnection();
