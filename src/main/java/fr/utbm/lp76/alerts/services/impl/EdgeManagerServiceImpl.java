@@ -16,49 +16,74 @@ import fr.utbm.lp76.alerts.services.EdgeManagerService;
 public class EdgeManagerServiceImpl implements EdgeManagerService {
 	@Autowired
 	AcquisitionService as;
-	
+
 	@Autowired
 	AlertManagerService am;
 
 	public void processTriggers() {
 		List<Trigger> triggers = as.getAllTriggers();
-		
+
+		// Read the list of Trigger
 		for (Trigger trigger : triggers) {
+			// Getting all the alerts historic of a trigger
 			AlertHis oldstate = trigger.getLastAlertHis();
-			List<Temperature> temperatures = trigger.getSensor().getTemperatures();
-			
-			if(trigger.isUpriseEdge()) {
-				if(!temperatures.isEmpty()){
+			// Getting all the temperature historic of a trigger
+			List<Temperature> temperatures = trigger.getSensor()
+					.getTemperatures();
+
+			// If the trigger is Uprise Edge
+			if (trigger.isUpriseEdge()) {
+				// If temperatures historic list is not empty
+				if (!temperatures.isEmpty()) {
+					// Getting the last temperature historic entry
 					Temperature t = temperatures.get(0);
-					if(oldstate == null || oldstate.getState() == false) {
-						if(t.getValue() >= trigger.getHigh()) {
+
+					// If these is no alert historic entry or the last alert
+					// history entry state is inactivate
+					if (oldstate == null || oldstate.getState() == false) {
+						// If the temperature value is higher than the trigger
+						// high edge
+						if (t.getValue() >= trigger.getHigh()) {
+							// Creating a new AlertHis
 							am.createAlert(trigger.getAlert(), trigger);
 						}
-					}
-					else if(oldstate == null || oldstate.getState() == true) {
-						if(t.getValue() <= trigger.getLow()) {
-							am.stopAlert(trigger.getAlert(),trigger);
+						// If the last alert history entry state is activate
+					} else if (oldstate.getState() == true) {
+						// If the temperature value is lower than the trigger
+						// low edge
+						if (t.getValue() <= trigger.getLow()) {
+							// Creating a new AlertHis
+							am.stopAlert(trigger.getAlert(), trigger);
 						}
 					}
 				}
-			}
-			else {
-				if(!temperatures.isEmpty()){
+				// If the trigger is Uprise Edge
+			} else {
+				// If temperatures historic list is not empty
+				if (!temperatures.isEmpty()) {
+					// Getting the last temperature historic entry
 					Temperature t = temperatures.get(0);
-					if(oldstate == null || oldstate.getState() == false) {
-						if(t.getValue() <= trigger.getLow()) {
+
+					// If these is no alert historic entry or the last alert
+					// history entry state is inactivate
+					if (oldstate == null || oldstate.getState() == false) {
+						// If the temperature value is lower than the trigger
+						// low edge
+						if (t.getValue() <= trigger.getLow()) {
+							// Creating a new AlertHis
 							am.createAlert(trigger.getAlert(), trigger);
 						}
-					}
-					else if(oldstate == null || oldstate.getState() == true) {
-						if(t.getValue() >= trigger.getHigh()) {
-							am.stopAlert(trigger.getAlert(),trigger);
+						// If the last alert history entry state is activate
+					} else if (oldstate.getState() == true) {
+						// If the temperature value is higher than the trigger
+						// high edge
+						if (t.getValue() >= trigger.getHigh()) {
+							// Creating a new AlertHis
+							am.stopAlert(trigger.getAlert(), trigger);
 						}
 					}
 				}
 			}
 		}
-		
 	}
-
 }
