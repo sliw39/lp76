@@ -7,26 +7,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.utbm.lp76.alerts.services.EdgeManagerService;
 
 /**
  * Servlet implementation class Runner
  */
-@Component("Runner")
-public class Runner {
-	@SuppressWarnings("unused")
+public class Runner extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@Autowired
 	private EdgeManagerService service;
 	
 	/**
      * Default constructor. 
      */
-    public Runner() {}
+    public Runner() {
+    	ApplicationContext context= new ClassPathXmlApplicationContext("app-context.xml");
+    	service = (EdgeManagerService) context.getBean("EdgeManagerService");
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

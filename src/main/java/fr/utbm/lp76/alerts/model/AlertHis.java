@@ -1,10 +1,11 @@
 package fr.utbm.lp76.alerts.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class AlertHis {
 	private int id;
-	private Date date;
+	private Timestamp date;
 	private boolean state;
 	private Trigger trigger;
 
@@ -16,11 +17,11 @@ public class AlertHis {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 

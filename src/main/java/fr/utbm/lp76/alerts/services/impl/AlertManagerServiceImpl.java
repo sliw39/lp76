@@ -22,7 +22,7 @@ public class AlertManagerServiceImpl implements AlertManagerService
 	
 	public void createAlert(Alert al, Trigger tg) 
 	{
-		java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+		java.sql.Timestamp date = new java.sql.Timestamp(System.currentTimeMillis());
 		
 		AlertHis ah = new AlertHis();
 		ah.setDate(date);
@@ -36,7 +36,7 @@ public class AlertManagerServiceImpl implements AlertManagerService
 	
 	public void stopAlert(Alert al, Trigger tg)
 	{
-		java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+		java.sql.Timestamp date = new java.sql.Timestamp(System.currentTimeMillis());
 		AlertHis ah = new AlertHis();
 		ah.setDate(date);
 		ah.setState(false);

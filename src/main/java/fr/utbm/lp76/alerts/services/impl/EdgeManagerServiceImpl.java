@@ -48,7 +48,7 @@ public class EdgeManagerServiceImpl implements EdgeManagerService {
 							am.createAlert(trigger.getAlert(), trigger);
 						}
 						// If the last alert history entry state is activate
-					} else if (oldstate.getState() == true) {
+					} else if (oldstate == null ||oldstate.getState() == true) {
 						// If the temperature value is lower than the trigger
 						// low edge
 						if (t.getValue() <= trigger.getLow()) {
@@ -74,7 +74,7 @@ public class EdgeManagerServiceImpl implements EdgeManagerService {
 							am.createAlert(trigger.getAlert(), trigger);
 						}
 						// If the last alert history entry state is activate
-					} else if (oldstate.getState() == true) {
+					} else if (oldstate == null ||oldstate.getState() == true) {
 						// If the temperature value is higher than the trigger
 						// high edge
 						if (t.getValue() >= trigger.getHigh()) {

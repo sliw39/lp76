@@ -73,35 +73,35 @@ public class AcquisitionServiceImpl implements AcquisitionService {
 			ResultSet rs = query.executeQuery("SELECT sen_id, sen_label FROM sensor");
 			while (rs.next()) {
 				Sensor s = new Sensor();
-				s.setId(rs.getInt("sen_in"));
+				s.setId(rs.getInt("sen_id"));
 				s.setLabel(rs.getString("sen_label"));
 				
 				sensors.put(s.getId(), s);
-			}
-			
-			
-			query = con.createStatement();
-			rs = query.executeQuery("SELECT tmp_id, tmp_value, tmp_date, sen_id FROM teperature ORDER BY tmp_date DESC");
-			int lines = 3;
-			while (rs.next() && lines != 0) {
-				Temperature t = new Temperature();
-				Sensor s = sensors.get(rs.getInt("sen_id"));
-				if(s != null) {
-					s.addTemperature(t);
-					t.setSensor(s);
-					
-					t.setId(rs.getInt("tmp_id"));
-					t.setValue(rs.getFloat("tmp_value"));
-					t.setDate(rs.getDate("tmp_date"));
-					lines--;
+				
+				PreparedStatement query2 = con.prepareStatement("SELECT tmp_id, tmp_value, tmp_date FROM temperature WHERE sen_id=? ORDER BY tmp_date DESC LIMIT 1");
+				query2.setInt(1, s.getId());
+				ResultSet rs2 = query2.executeQuery();
+				while (rs2.next()) {
+					Temperature t = new Temperature();
+					if(s != null) {
+						s.addTemperature(t);
+						t.setSensor(s);
+						
+						t.setId(rs2.getInt("tmp_id"));
+						t.setValue(rs2.getFloat("tmp_value"));
+						t.setDate(rs2.getDate("tmp_date"));
+					}
 				}
 			}
+			
+			
+			
 			
 			List<Alert> alerts = getAllAlerts();
 			
 			query = con.createStatement();
-			rs = query.executeQuery("SELECT trg_id, trg_high, trg_low, trg_edge, alr_code, sen_id FROM trigger");
-			while (rs.next() && lines != 0) {
+			rs = query.executeQuery("SELECT trg_id, trg_high, trg_low, trg_edge, alr_code, sen_id FROM lp76.trigger");
+			while (rs.next()) {
 				Trigger t = new Trigger();
 				Sensor s = sensors.get(rs.getInt("sen_id"));
 				if(s != null) {
@@ -113,7 +113,7 @@ public class AcquisitionServiceImpl implements AcquisitionService {
 					
 					String code = rs.getString("alr_code");
 					for (Alert alert : alerts) {
-						if(alert.getCode() == code) {
+						if(alert.getCode().equals(code)) {
 							t.setAlert(alert);
 							break;
 						}
@@ -124,7 +124,7 @@ public class AcquisitionServiceImpl implements AcquisitionService {
 					ResultSet rs2 = query2.executeQuery();
 					if(rs2.next()) {
 						AlertHis ah = new AlertHis();
-						ah.setDate(rs2.getDate("alh_date"));
+						ah.setDate(rs2.getTimestamp("alh_date"));
 						ah.setId(rs2.getInt("alh_id"));
 						ah.setState(rs2.getBoolean("alh_state"));
 						ah.setTrigger(t);

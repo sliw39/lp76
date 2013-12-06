@@ -25,7 +25,7 @@ public class MessageTest {
 		Sensor sn = new Sensor();
 		Trigger tg = new Trigger();
 		AlertHis ah = new AlertHis();
-		java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+		java.sql.Timestamp date = new java.sql.Timestamp(System.currentTimeMillis());
 		
 		al.setCode("AT");
 		al.setDesciption("Alerte de test");
